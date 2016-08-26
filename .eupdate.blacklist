@@ -1,5 +1,5 @@
 app-admin/chef
-dev-ruby/net-ssh-gateway/
+dev-ruby/net-ssh-gateway
 app-backup/duply
 dev-db/mysql-init-scripts
 dev-lang/ruby

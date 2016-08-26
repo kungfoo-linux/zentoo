@@ -1,9 +1,9 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
 EAPI=5
-# Test hangs on jruby
+
 USE_RUBY="ruby22"
 
 RUBY_FAKEGEM_TASK_DOC=""
