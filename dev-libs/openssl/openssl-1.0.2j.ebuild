@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI=5
+EAPI="5"
 
 inherit eutils flag-o-matic toolchain-funcs multilib multilib-minimal
 
@@ -12,11 +12,9 @@ HOMEPAGE="http://www.openssl.org/"
 SRC_URI="mirror://openssl/source/${MY_P}.tar.gz"
 
 LICENSE="openssl"
-# subslot set to 1.0.2g version as this is the first release without SSLv2
-# support and thus breaks nearly every openssl consumer (see bug #575548)
 SLOT="0"
 KEYWORDS="amd64"
-IUSE="+asm bindist gmp kerberos rfc3779 sctp cpu_flags_x86_sse2 static-libs test +tls-heartbeat vanilla zlib"
+IUSE="+asm bindist gmp kerberos rfc3779 sctp cpu_flags_x86_sse2 sslv2 +sslv3 static-libs test +tls-heartbeat vanilla zlib"
 RESTRICT="!bindist? ( bindist )"
 
 RDEPEND=">=app-misc/c_rehash-1.7-r1
@@ -48,8 +46,7 @@ src_prepare() {
 
 	if ! use vanilla ; then
 		epatch "${FILESDIR}"/${PN}-1.0.0a-ldflags.patch #327421
-		epatch "${FILESDIR}"/${PN}-1.0.0d-windres.patch #373743
-		epatch "${FILESDIR}"/${PN}-1.0.2g-parallel-build.patch
+		epatch "${FILESDIR}"/${PN}-1.0.2i-parallel-build.patch
 		epatch "${FILESDIR}"/${PN}-1.0.2a-parallel-obj-headers.patch
 		epatch "${FILESDIR}"/${PN}-1.0.2a-parallel-install-dirs.patch
 		epatch "${FILESDIR}"/${PN}-1.0.2a-parallel-symlinking.patch #545028
@@ -147,12 +144,13 @@ multilib_src_configure() {
 		enable-mdc2 \
 		enable-rc5 \
 		enable-tlsext \
-		enable-ssl2 \
 		$(use_ssl asm) \
 		$(use_ssl gmp gmp -lgmp) \
 		$(use_ssl kerberos krb5 --with-krb5-flavor=${krb5}) \
 		$(use_ssl rfc3779) \
 		$(use_ssl sctp) \
+		$(use_ssl sslv2 ssl2) \
+		$(use_ssl sslv3 ssl3) \
 		$(use_ssl tls-heartbeat heartbeats) \
 		$(use_ssl zlib) \
 		--prefix="${EPREFIX}"/usr \
@@ -244,16 +242,8 @@ multilib_src_install_all() {
 	keepdir ${SSL_CNF_DIR}/private
 }
 
-pkg_preinst() {
-	has_version ${CATEGORY}/${PN}:0.9.8 && return 0
-	preserve_old_lib /usr/$(get_libdir)/lib{crypto,ssl}.so.0.9.8
-}
-
 pkg_postinst() {
 	ebegin "Running 'c_rehash ${EROOT%/}${SSL_CNF_DIR}/certs/' to rebuild hashes #333069"
 	c_rehash "${EROOT%/}${SSL_CNF_DIR}/certs" >/dev/null
 	eend $?
-
-	has_version ${CATEGORY}/${PN}:0.9.8 && return 0
-	preserve_old_lib_notify /usr/$(get_libdir)/lib{crypto,ssl}.so.0.9.8
 }
