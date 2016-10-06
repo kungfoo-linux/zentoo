@@ -3,7 +3,7 @@ dev-ruby/net-ssh-gateway
 app-backup/duply
 dev-db/mysql-init-scripts
 dev-lang/ruby
-dev-libs/protobuf
+#dev-libs/protobuf
 dev-ruby/rdoc
 net-analyzer/nsca
 sys-apps/openrc
