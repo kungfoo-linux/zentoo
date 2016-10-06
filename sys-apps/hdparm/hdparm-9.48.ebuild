@@ -1,4 +1,4 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -7,7 +7,7 @@ EAPI="4"
 inherit toolchain-funcs flag-o-matic eutils
 
 DESCRIPTION="Utility to change hard drive performance parameters"
-HOMEPAGE="https://sourceforge.net/projects/hdparm/"
+HOMEPAGE="http://sourceforge.net/projects/hdparm/"
 SRC_URI="mirror://sourceforge/hdparm/${P}.tar.gz"
 
 LICENSE="BSD GPL-2" # GPL-2 only

@@ -21,13 +21,9 @@ RDEPEND="
 DEPEND="${RDEPEND}
 	>=dev-perl/Module-Build-0.280.801
 	test? (
-		virtual/perl-Test-Simple
+		>=dev-perl/Test-Pod-1.140.0
+		>=dev-perl/Test-Pod-Coverage-1.40.0
 	)
 "
 
 SRC_TEST="do parallel"
-
-src_test() {
-	perl_rm_files t/pod-coverage.t t/pod.t
-	perl-module_src_test
-}

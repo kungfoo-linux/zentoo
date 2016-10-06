@@ -7,8 +7,6 @@ GST_ORG_MODULE="gst-plugins-base"
 
 inherit gstreamer
 
-# yes the manifest code should get fixed
-
 DESCRIPTION="Basepack of plugins for gstreamer"
 HOMEPAGE="https://gstreamer.freedesktop.org/"
 

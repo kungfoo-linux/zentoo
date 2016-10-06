@@ -22,7 +22,7 @@ DEPEND="${RDEPEND}"
 src_prepare() {
 	epatch "${FILESDIR}"/${P}-libexec.patch
 	epatch "${FILESDIR}"/${P}-coreutils-tail-n-fix.patch
-	# support for .ebuild and #!/sbin/openrc-run:
+	# support for .ebuild and #!/sbin/runscript:
 	epatch "${FILESDIR}"/${P}-gentoo.patch
 
 	sed -i \

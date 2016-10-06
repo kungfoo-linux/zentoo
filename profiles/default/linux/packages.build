@@ -21,6 +21,7 @@ sys-devel/libtool
 sys-apps/baselayout
 sys-apps/makedev
 sys-apps/coreutils
+sys-apps/dbus
 sys-apps/diffutils
 sys-apps/file
 sys-apps/findutils

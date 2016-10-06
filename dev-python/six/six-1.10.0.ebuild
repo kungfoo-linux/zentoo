@@ -68,6 +68,5 @@ pkg_preinst() {
 			rm -r "${egginfo}" || die "Failed to remove egg-info directory"
 		fi
 	}
-	cd / # Bug 585146
 	python_foreach_impl _cleanup
 }

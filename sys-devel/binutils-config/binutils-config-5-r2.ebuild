@@ -1,10 +1,8 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
 EAPI="4"
-
-inherit prefix
 
 DESCRIPTION="Utility to change the binutils version being used"
 HOMEPAGE="https://www.gentoo.org/"
@@ -23,7 +21,6 @@ S=${WORKDIR}
 
 src_install() {
 	newbin "${FILESDIR}"/${PN}-${PV} ${PN}
-	use prefix && eprefixify "${ED}"/usr/bin/${PN}
 	doman "${FILESDIR}"/${PN}.8
 
 	insinto /usr/share/eselect/modules

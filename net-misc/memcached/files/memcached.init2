@@ -1,4 +1,4 @@
-#!/sbin/openrc-run
+#!/sbin/runscript
 
 CONF="${SVCNAME#*.}"
 CONFBASE="/etc/conf.d/memcached"

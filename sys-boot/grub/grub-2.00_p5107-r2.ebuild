@@ -51,7 +51,7 @@ GRUB_ALL_PLATFORMS=(
 	# everywhere:
 	emu
 	# mips only:
-	qemu-mips
+	qemu-mips yeeloong
 	# amd64, x86, ppc, ppc64:
 	ieee1275
 	# amd64, x86:
@@ -61,7 +61,8 @@ GRUB_ALL_PLATFORMS=(
 )
 IUSE+=" ${GRUB_ALL_PLATFORMS[@]/#/grub_platforms_}"
 
-REQUIRED_USE="grub_platforms_qemu? ( truetype )"
+REQUIRED_USE="grub_platforms_qemu? ( truetype )
+	grub_platforms_yeeloong? ( truetype )"
 
 # os-prober: Used on runtime to detect other OSes
 # xorriso (dev-libs/libisoburn): Used on runtime for mkrescue

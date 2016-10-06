@@ -40,24 +40,32 @@ dev-ruby/rubygems)                       echo "=$1-2.5.2";;
 dev-ruby/uuidtools)                      echo "=$1-2.1.5";;
 virtual/rubygems)                        echo "=$1-11";;
 
+# java
+dev-java/oracle-jdk-bin)                 echo "=$1-1.8.0.47";;
+virtual/jdk)                             echo "=$1-1.8.0-r1";;
+virtual/jre)                             echo "=$1-1.8.0";;
+
 # kernel
-sys-kernel/gentoo-sources)               echo "=$1-4.6.3";;
-sys-kernel/linux-headers)                echo "=$1-4.6";;
+sys-kernel/gentoo-sources)               echo "=$1-4.4.6";;
+sys-kernel/linux-headers)                echo "=$1-4.4";;
 
 # vim
-app-editors/vim)                         echo "=$1-7.4.2102";;
-app-editors/vim-core)                    echo "=$1-7.4.2102";;
+app-editors/vim)                         echo "=$1-7.4.1583";;
+app-editors/vim-core)                    echo "=$1-7.4.1583";;
 
 # postgres
-dev-db/postgresql)                       echo "=$1-9.4.9"
-                                         echo "=$1-9.5.4";;
+dev-db/postgresql)                       echo "=$1-9.4.7"
+                                         echo "=$1-9.5.2";;
 
 app-emulation/lxc)                       echo "=$1-1.1.5";;
-dev-lang/go)                             echo "=$1-1.7";;
+dev-lang/go)                             echo "=$1-1.6.2";;
+dev-libs/libuv)                          echo "=$1-1.8.0";;
 dev-vcs/bzr)                             echo "=$1-2.6.0";;
 net-analyzer/nagios)                     echo "=$1-3.5.1";;
 net-analyzer/nagios-core)                echo "=$1-3.5.1";;
+net-libs/http-parser)                    echo "=$1-2.6.2";;
 virtual/jpeg)                            echo "=$1-0-r2";;
+www-client/phantomjs)                    echo "=$1-2.0.0-r1";;
 
 *)                                       echo $1;;
 esac

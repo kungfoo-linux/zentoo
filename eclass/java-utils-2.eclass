@@ -348,10 +348,8 @@ java-pkg_dojar() {
 				#but first check class version when in strict mode.
 				is-java-strict && java-pkg_verify-classes "${jar}"
 
-				(
-					insinto "${JAVA_PKG_JARDEST}"
-					doins "${jar}"
-				) || die "failed to install ${jar}"
+				INSDESTTREE="${JAVA_PKG_JARDEST}" \
+					doins "${jar}" || die "failed to install ${jar}"
 				java-pkg_append_ JAVA_PKG_CLASSPATH "${JAVA_PKG_JARDEST}/${jar_basename}"
 				debug-print "installed ${jar} to ${D}${JAVA_PKG_JARDEST}"
 			# make a symlink to the original jar if it's symlink
@@ -495,11 +493,9 @@ java-pkg_doso() {
 		if [[ -e "${lib}" ]] ; then
 			# install if it isn't a symlink
 			if [[ ! -L "${lib}" ]] ; then
-				(
-					insinto "${JAVA_PKG_LIBDEST}"
-					insopts -m0755
-					doins "${lib}"
-				) || die "failed to install ${lib}"
+				INSDESTTREE="${JAVA_PKG_LIBDEST}" \
+					INSOPTIONS="-m0755" \
+					doins "${lib}" || die "failed to install ${lib}"
 				java-pkg_append_ JAVA_PKG_LIBRARY "${JAVA_PKG_LIBDEST}"
 				debug-print "Installing ${lib} to ${JAVA_PKG_LIBDEST}"
 			# otherwise make a symlink to the symlink's origin
@@ -728,10 +724,8 @@ java-pkg_dosrc() {
 	done
 
 	# Install the zip
-	(
-		insinto "${JAVA_PKG_SOURCESPATH}"
-		doins ${zip_path}
-	) || die "Failed to install source"
+	INSDESTTREE=${JAVA_PKG_SOURCESPATH} \
+		doins ${zip_path} || die "Failed to install source"
 
 	JAVA_SOURCES="${JAVA_PKG_SOURCESPATH}/${zip_name}"
 
@@ -831,10 +825,7 @@ java-pkg_dolauncher() {
 	echo "source /usr/share/java-config-2/launcher/launcher.bash" >> "${target}"
 
 	if [[ -n "${target_dir}" ]]; then
-		(
-			into "${target_dir}"
-			dobin "${target}"
-		)
+		DESTTREE="${target_dir}" dobin "${target}"
 		local ret=$?
 		return ${ret}
 	else
@@ -873,11 +864,9 @@ java-pkg_dowar() {
 		fi
 
 		# Install those files like you mean it
-		(
-			insopts -m0644
-			insinto "${JAVA_PKG_WARDEST}"
+		INSOPTIONS="-m 0644" \
+			INSDESTTREE=${JAVA_PKG_WARDEST} \
 			doins ${warpath}
-		)
 	done
 }
 
@@ -2334,14 +2323,14 @@ java-pkg_init_paths_() {
 		JAVA_PKG_NAME="${PN}-${SLOT%/*}"
 	fi
 
-	JAVA_PKG_SHAREPATH="/usr/share/${JAVA_PKG_NAME}"
+	JAVA_PKG_SHAREPATH="${DESTTREE}/share/${JAVA_PKG_NAME}"
 	JAVA_PKG_SOURCESPATH="${JAVA_PKG_SHAREPATH}/sources/"
 	JAVA_PKG_ENV="${D}${JAVA_PKG_SHAREPATH}/package.env"
-	JAVA_PKG_VIRTUALS_PATH="/usr/share/java-config-2/virtuals"
+	JAVA_PKG_VIRTUALS_PATH="${DESTTREE}/share/java-config-2/virtuals"
 	JAVA_PKG_VIRTUAL_PROVIDER="${D}/${JAVA_PKG_VIRTUALS_PATH}/${JAVA_PKG_NAME}"
 
 	[[ -z "${JAVA_PKG_JARDEST}" ]] && JAVA_PKG_JARDEST="${JAVA_PKG_SHAREPATH}/lib"
-	[[ -z "${JAVA_PKG_LIBDEST}" ]] && JAVA_PKG_LIBDEST="/usr/$(get_libdir)/${JAVA_PKG_NAME}"
+	[[ -z "${JAVA_PKG_LIBDEST}" ]] && JAVA_PKG_LIBDEST="${DESTTREE}/$(get_libdir)/${JAVA_PKG_NAME}"
 	[[ -z "${JAVA_PKG_WARDEST}" ]] && JAVA_PKG_WARDEST="${JAVA_PKG_SHAREPATH}/webapps"
 
 	# TODO maybe only print once?

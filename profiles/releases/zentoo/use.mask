@@ -284,7 +284,6 @@ racket
 radius
 rdesktop
 rdoc
-re2
 recode
 regression-test
 rpm
@@ -387,7 +386,6 @@ curl_ssl_axtls
 curl_ssl_cyassl
 curl_ssl_gnutls
 curl_ssl_libressl
-curl_ssl_mbedtls
 curl_ssl_nss
 curl_ssl_polarssl
 
@@ -603,20 +601,6 @@ linguas_zh_CN
 linguas_zh_HK
 linguas_zh_TW
 linguas_zu
-
-# more language cruft
-l10n_da
-l10n_de
-l10n_fr
-l10n_it
-l10n_ja
-l10n_ko
-l10n_nl
-l10n_pl
-l10n_ro
-l10n_ru
-l10n_zh-CN
-l10n_zh-TW
 
 # unsupported video cards
 video_cards_apm

@@ -265,7 +265,7 @@ get_libname() {
 	else
 		for ver in "$@" ; do
 			case ${CHOST} in
-				*-cygwin*) echo ".${ver}.${libname}";;
+				*-cygwin*) echo ".${libname}";;
 				*-darwin*) echo ".${ver}.${libname}";;
 				*-mint*)   echo ".${libname}";;
 				*)         echo ".${libname}.${ver}";;

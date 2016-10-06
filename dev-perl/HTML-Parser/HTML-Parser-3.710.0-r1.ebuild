@@ -1,4 +1,4 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -16,12 +16,7 @@ IUSE="test"
 
 RDEPEND=">=dev-perl/HTML-Tagset-3.03"
 DEPEND="${RDEPEND}
-	test? ( virtual/perl-Test-Simple )"
+	test? ( dev-perl/Test-Pod )"
 
 SRC_TEST=do
 mydoc="ANNOUNCEMENT"
-
-src_test() {
-	perl_rm_files t/pod.t
-	perl-module_src_test
-}

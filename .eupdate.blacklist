@@ -1,9 +1,9 @@
 app-admin/chef
-dev-ruby/net-ssh-gateway
+dev-ruby/net-ssh-gateway/
 app-backup/duply
 dev-db/mysql-init-scripts
 dev-lang/ruby
-#dev-libs/protobuf
+dev-libs/protobuf
 dev-ruby/rdoc
 net-analyzer/nsca
 sys-apps/openrc
@@ -13,8 +13,8 @@ sys-block/megacli
 sys-block/tw_cli
 sys-boot/grub
 sys-fs/udev-init-scripts
-#sys-fs/zfs-kmod
-#sys-kernel/spl
+sys-fs/zfs-kmod
+sys-kernel/spl
 sys-libs/freeipmi
 virtual/editor
 virtual/libudev

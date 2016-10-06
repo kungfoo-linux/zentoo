@@ -1,4 +1,4 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -9,12 +9,12 @@ inherit autotools eutils toolchain-funcs
 DESCRIPTION="Text formatter used for man pages"
 HOMEPAGE="https://www.gnu.org/software/groff/groff.html"
 SRC_URI="mirror://gnu/groff/${P}.tar.gz
-	l10n_ja? ( https://dev.gentoo.org/~naota/patch/${PN}-1.22.1-japanese.patch.bz2 )"
+	linguas_ja? ( https://dev.gentoo.org/~naota/patch/${PN}-1.22.1-japanese.patch.bz2 )"
 
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="amd64"
-IUSE="examples X l10n_ja"
+IUSE="examples X linguas_ja"
 
 RDEPEND="
 	X? (
@@ -26,7 +26,7 @@ RDEPEND="
 		x11-libs/libICE
 	)"
 DEPEND="${RDEPEND}
-	l10n_ja? ( virtual/yacc )"
+	linguas_ja? ( virtual/yacc )"
 
 DOCS=( BUG-REPORT ChangeLog MORE.STUFF NEWS PROBLEMS PROJECTS README REVISION TODO VERSION )
 
@@ -53,7 +53,7 @@ src_prepare() {
 	.ds default-operating-system Gentoo${pfx}/${KERNEL}
 	EOF
 
-	if use l10n_ja ; then
+	if use linguas_ja ; then
 		epatch "${WORKDIR}"/${PN}-1.22.1-japanese.patch #255292 #350534 #450796
 		eautoconf
 		eautoheader
@@ -69,7 +69,7 @@ src_configure() {
 		--with-appresdir="${EPREFIX}"/usr/share/X11/app-defaults \
 		--docdir="${EPREFIX}"/usr/share/doc/${PF} \
 		$(use_with X x) \
-		$(usex l10n_ja '--enable-japanese' '')
+		$(usex linguas_ja '--enable-japanese' '')
 }
 
 src_compile() {

@@ -57,6 +57,7 @@ sys-libs
 sys-power
 sys-process
 virtual
+www-client
 www-misc
 www-servers
 x11-apps

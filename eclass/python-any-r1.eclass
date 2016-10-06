@@ -137,8 +137,7 @@ _python_any_set_globals() {
 	for i in "${_PYTHON_SUPPORTED_IMPLS[@]}"; do
 		python_export "${i}" PYTHON_PKG_DEP
 
-		# note: need to strip '=' slot operator for || deps
-		PYTHON_DEPS="${PYTHON_PKG_DEP%=} ${PYTHON_DEPS}"
+		PYTHON_DEPS="${PYTHON_PKG_DEP} ${PYTHON_DEPS}"
 	done
 	PYTHON_DEPS="|| ( ${PYTHON_DEPS})"
 	readonly PYTHON_DEPS
@@ -221,8 +220,7 @@ python_gen_any_dep() {
 		python_export "${i}" PYTHON_PKG_DEP
 
 		local i_depstr=${depstr//\$\{PYTHON_USEDEP\}/${PYTHON_USEDEP}}
-		# note: need to strip '=' slot operator for || deps
-		out="( ${PYTHON_PKG_DEP%=} ${i_depstr} ) ${out}"
+		out="( ${PYTHON_PKG_DEP} ${i_depstr} ) ${out}"
 	done
 	echo "|| ( ${out})"
 }
