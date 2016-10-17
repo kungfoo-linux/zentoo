@@ -13,6 +13,7 @@ app-crypt/gnupg
 app-editors/vim
 app-misc/colordiff
 app-misc/hilite
+app-misc/jq
 app-misc/mc
 app-misc/tmux
 app-portage/eix
