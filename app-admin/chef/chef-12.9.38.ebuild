@@ -59,6 +59,7 @@ each_ruby_prepare() {
 	sed -i -e '/rspec/d' ${RUBY_FAKEGEM_GEMSPEC} || die "Unable to fix up dependencies."
 	sed -i -e '/serverspec/d' ${RUBY_FAKEGEM_GEMSPEC} || die "Unable to fix up dependencies."
 	sed -i -e '/specinfra/d' ${RUBY_FAKEGEM_GEMSPEC} || die "Unable to fix up dependencies."
+	sed -i -e '/bundler/d' ${RUBY_FAKEGEM_GEMSPEC} || die "Unable to fix up dependencies."
 }
 
 all_ruby_install() {
