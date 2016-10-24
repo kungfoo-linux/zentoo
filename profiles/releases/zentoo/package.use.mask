@@ -10,6 +10,7 @@ dev-db/sqlite tools
 dev-java/ant testutil
 dev-lang/erlang java
 dev-lang/php sqlite
+dev-libs/cyrus-sasl java
 dev-libs/gecode gist
 dev-libs/glib utils systemtap
 dev-libs/libnatspec python
