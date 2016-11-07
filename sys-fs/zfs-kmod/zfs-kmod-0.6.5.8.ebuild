@@ -102,7 +102,7 @@ src_configure() {
 }
 
 src_install() {
-	autotools-utils_src_install INSTALL_MOD_PATH="${INSTALL_MOD_PATH:-$EROOT}"
+	autotools-utils_src_install
 }
 
 pkg_postinst() {
