@@ -56,7 +56,7 @@ pkg_setup() {
 	kernel_is ge 2 6 32 || die "Linux 2.6.32 or newer required"
 
 	[ ${PV} != "9999" ] && \
-		{ kernel_is le 4 6 || die "Linux 4.6 is the latest supported version."; }
+		{ kernel_is le 4 8 || die "Linux 4.8 is the latest supported version."; }
 
 	check_extra_config
 }
@@ -93,7 +93,7 @@ src_configure() {
 }
 
 src_install() {
-	autotools-utils_src_install
+	autotools-utils_src_install INSTALL_MOD_PATH="${INSTALL_MOD_PATH:-$EROOT}"
 }
 
 pkg_postinst() {
