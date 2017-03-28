@@ -22,3 +22,5 @@ sys-fs/zfs kernel-builtin
 
 # repoman doesn't work if this is not in the master repo :(
 dev-java/oracle-jdk-bin headless-awt
+
+media-video/ffmpeg vpx

@@ -343,7 +343,6 @@ vhosts
 videos
 vorbis
 vpopmail
-vpx
 wavpack
 wayland
 wddx
