@@ -1,8 +1,7 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
-
-EAPI=5
+EAPI=6
 
 inherit eutils flag-o-matic libtool multilib toolchain-funcs versionator
 
@@ -19,9 +18,8 @@ IUSE="autotrace bzip2 corefonts cxx djvu fftw fontconfig fpx graphviz hdri jbig 
 
 RESTRICT="perl? ( userpriv )"
 
-# Drop the libtool dep once libltdl goes stable.
 RDEPEND="
-	|| ( dev-libs/libltdl:0 <sys-devel/libtool-2.4.3-r2:2 )
+	dev-libs/libltdl:0
 	autotrace? ( >=media-gfx/autotrace-0.31.1 )
 	bzip2? ( app-arch/bzip2 )
 	corefonts? ( media-fonts/corefonts )
@@ -70,7 +68,7 @@ REQUIRED_USE="corefonts? ( truetype )
 S=${WORKDIR}/${MY_P}
 
 src_prepare() {
-	epatch_user
+	default
 
 	elibtoolize # for Darwin modules
 
@@ -127,8 +125,7 @@ src_configure() {
 		$(use_with jbig) \
 		$(use_with jpeg) \
 		$(use_with jpeg2k openjp2) \
-		--without-lcms \
-		$(use_with lcms lcms2) \
+		$(use_with lcms) \
 		$(use_with lqr) \
 		$(use_with lzma) \
 		$(use_with openexr) \
@@ -146,7 +143,7 @@ src_configure() {
 
 src_test() {
 	LD_LIBRARY_PATH="${S}/coders/.libs:${S}/filters/.libs:${S}/Magick++/lib/.libs:${S}/magick/.libs:${S}/wand/.libs" \
-	emake -j1 check
+	emake check
 }
 
 src_install() {
