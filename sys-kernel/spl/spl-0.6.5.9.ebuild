@@ -1,7 +1,6 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
-
 EAPI="5"
 
 if [[ ${PV} == "9999" ]] ; then
@@ -56,7 +55,7 @@ pkg_setup() {
 	kernel_is ge 2 6 32 || die "Linux 2.6.32 or newer required"
 
 	[ ${PV} != "9999" ] && \
-		{ kernel_is le 4 8 || die "Linux 4.8 is the latest supported version."; }
+		{ kernel_is le 4 10 || die "Linux 4.10 is the latest supported version."; }
 
 	check_extra_config
 }
