@@ -13,8 +13,6 @@ sys-block/megacli
 sys-block/tw_cli
 sys-boot/grub
 sys-fs/udev-init-scripts
-sys-fs/zfs-kmod
-sys-kernel/spl
 sys-libs/freeipmi
 virtual/editor
 virtual/libudev
