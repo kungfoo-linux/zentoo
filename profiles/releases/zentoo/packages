@@ -84,7 +84,6 @@ sys-fs/lvm2
 sys-fs/mdadm
 sys-fs/ncdu
 sys-fs/xfsprogs
-sys-fs/zfs
 sys-power/acpitool
 sys-process/acct
 sys-process/htop
