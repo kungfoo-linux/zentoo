@@ -1,10 +1,9 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
+EAPI=6
 
-EAPI=5
-
-PYTHON_COMPAT=( python2_7 python3_{3,4,5} pypy )
+PYTHON_COMPAT=( python2_7 python3_{4,5,6} pypy{,3} )
 PYTHON_REQ_USE="threads(+)"
 
 inherit distutils-r1
@@ -19,10 +18,10 @@ KEYWORDS="amd64"
 IUSE="libressl test"
 
 RDEPEND="
-	!libressl? ( dev-libs/openssl:0 )
+	!libressl? ( dev-libs/openssl:0= )
 	libressl? ( dev-libs/libressl )
-	$(python_gen_cond_dep '>=dev-python/cffi-1.1.0:=[${PYTHON_USEDEP}]' 'python*')
-	$(python_gen_cond_dep 'dev-python/enum34[${PYTHON_USEDEP}]' python2_7 python3_3 pypy)
+	$(python_gen_cond_dep '>=dev-python/cffi-1.4.1:=[${PYTHON_USEDEP}]' 'python*')
+	$(python_gen_cond_dep 'dev-python/enum34[${PYTHON_USEDEP}]' python2_7 python3_3 pypy{,3})
 	>=dev-python/idna-2.0[${PYTHON_USEDEP}]
 	>=dev-python/pyasn1-0.1.8[${PYTHON_USEDEP}]
 	dev-python/setuptools[${PYTHON_USEDEP}]
@@ -31,20 +30,21 @@ RDEPEND="
 	virtual/python-ipaddress[${PYTHON_USEDEP}]
 	"
 DEPEND="${RDEPEND}
-	dev-python/setuptools[${PYTHON_USEDEP}]
+	>=dev-python/setuptools-1.0[${PYTHON_USEDEP}]
 	test? (
 		~dev-python/cryptography-vectors-${PV}[${PYTHON_USEDEP}]
 		dev-python/hypothesis[${PYTHON_USEDEP}]
 		dev-python/iso8601[${PYTHON_USEDEP}]
 		dev-python/pretend[${PYTHON_USEDEP}]
 		dev-python/pyasn1-modules[${PYTHON_USEDEP}]
-		dev-python/pytest[${PYTHON_USEDEP}]
+		>=dev-python/pytest-2.9.0[${PYTHON_USEDEP}]
+		dev-python/pytz[${PYTHON_USEDEP}]
 	)"
 
 DOCS=( AUTHORS.rst CONTRIBUTING.rst README.rst )
 
-PATCHES=( "${FILESDIR}/${PN}-1.2.2-openssl-1.0.2g-mem_buf.patch" )
-
 python_test() {
+	distutils_install_for_testing
+
 	py.test -v -v -x || die "Tests fail with ${EPYTHON}"
 }
